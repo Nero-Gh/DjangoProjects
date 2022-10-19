@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies</title>
+  </head>
+  <body>
+    <h2>Movies</h2>
+    <ul>
+      {%for movie in movies%}
+      <a href="{{movie.id}}"
+        ><li>{{movie.title}}, <span>{{movie.year}}</span> Click Here</li></a
+      >
+      {%endfor%}
+    </ul>
+    <button>
+      <a href="/movies/add">Add Movie</a>
+    </button>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'main.html' %} {% block content %}
+
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Employees</h1>
+      <p class="lead text-muted">List of all Employees</p>
+      <a href="{% url 'add-employee' %}"
+        ><button class="btn btn-success">Add Employee</button></a
+      >
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {%for worker in workers%}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title">{{worker.name}}</h2>
+              <p class="card-text">{{worker.title}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    View
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-primary">
+                    <a href="{% url 'edit-employee' id=worker.id %}">Edit</a>
+                  </button>
+
+                  <button type="button" class="btn btn-sm btn-outline-danger">
+                    <a
+                      href="{% url 'delete-employee' id=worker.id%}"
+                      class="color:white"
+                      >Delete</a
+                    >
+                  </button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock%}

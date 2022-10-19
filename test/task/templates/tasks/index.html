@@ -1,0 +1,11 @@
+{% comment %} {% extends 'tasks/layout.html' %} {% endcomment %}
+
+<ul>
+  {%for task in tasks%}
+  <li>{{task}}</li>
+  {%empty%}
+  <li><h1>No Task</h1></li>
+  {% endfor %}
+</ul>
+
+<a href="{%url 'tasks:add'%}">Add Task</a>

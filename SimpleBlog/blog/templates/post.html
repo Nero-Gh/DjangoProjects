@@ -1,0 +1,32 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href={%static "style.css" %} />
+    <title>Blog</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container-box">
+        <h1 class="title">Nero Blog</h1>
+      </div>
+      <a style="text-decoration: none; color: black" href="{{blog.id}}">
+        <div class="container-box">
+          <h2 class="blog-title">{{blog.title}}</h2>
+          <div class="blog-date">
+            <p>{{blog.created_at}}</p>
+          </div>
+          <p class="blog-message">{{blog.body}}</p>
+          <a
+            href="/"
+            style="text-decoration: none; color: black; margin-top: 10px"
+            >👈 Go Back</a
+          >
+        </div>
+      </a>
+    </div>
+  </body>
+</html>
