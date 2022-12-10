@@ -6,28 +6,36 @@
     <div class="card mt-5">
       <div class="card-title">
         <h4 class="text-center py-3">Register for a free account</h4>
+
+        {% include 'partials/_messages.html' %}
       </div>
       <div class="card-body">
-        <form action="" method="POST">
+        <form action="{% url 'register' %}" method="POST">
+          {% csrf_token %}
           <div class="form-group">
             <input
               type="text"
               name="username"
               id="usernameField"
               placeholder="Username"
+              value="{{fieldvalues.username}}"
               class="form-control form-control-sm mb-1"
             />
           </div>
           <div class="invalid-feedback" style="display: none"></div>
+          <p class="check-success text-sm text-success"></p>
           <div class="form-group">
             <input
               type="email"
               name="email"
               id="emailField"
               placeholder="Email"
+              value="{{fieldvalues.email}}"
               class="form-control form-control-sm mb-1"
             />
           </div>
+          <div class="email-invalid-feedback" style="display: none"></div>
+          <p class="check-success text-sm text-success"></p>
           <div class="form-group">
             <input
               type="text"
@@ -36,12 +44,14 @@
               placeholder="Password"
               class="form-control form-control-sm mb-1"
             />
-            <small class="float-right">Show</small>
+            <small class="float-right show-password py-3 cursor-pointer"
+              >Show</small
+            >
           </div>
           <input
             type="submit"
             value="Register"
-            class="btn btn-primary form-control"
+            class="btn btn-primary form-control submit-button"
           />
         </form>
       </div>

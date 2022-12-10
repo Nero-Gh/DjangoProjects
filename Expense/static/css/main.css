@@ -49,3 +49,7 @@
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 }
+
+.show-password {
+  cursor: pointer !important;
+}
