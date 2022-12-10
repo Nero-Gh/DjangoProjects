@@ -1,8 +1,0 @@
-<form action="{%url 'tasks:add'%}" method="post">
-  {% csrf_token %}
-  <!-- <input type="text" name="add" />-->
-  {{forms}} {{priority}}
-  <input type="submit" value="Submit" />
-</form>
-
-<a href="{%url 'tasks:index'%}">View Task</a>
