@@ -7,7 +7,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{% url 'expenses' %}">
         <span data-feather="file" class="align-text-bottom"></span>
         Expenses
       </a>
@@ -45,6 +45,26 @@
       <a class="nav-link" href="#">
         <span data-feather="file-text" class="align-text-bottom"></span>
         Expenses Summary
+      </a>
+    </li>
+  </ul>
+  <ul class="nav flex-column mb-2">
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span data-feather="file-text" class="align-text-bottom"></span>
+        Settings
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'preferences' %}">
+        <span data-feather="file-text" class="align-text-bottom"></span>
+        General
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span data-feather="file-text" class="align-text-bottom"></span>
+        Accounts
       </a>
     </li>
   </ul>

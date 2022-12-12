@@ -3,6 +3,66 @@
 <!-------->
 {% block content %}
 <!------>
+
+<div class="container">
+  <h1 class="mt-5">Homepage</h1>
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="">Expenses</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            My Expenses
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      <a href="{% url 'add-expense' %}" class="btn btn-primary btn-sm">
+        Add Expenses</a
+      >
+    </div>
+  </div>
+</div>
 {% include 'partials/_messages.html' %}
-<h1>Homepage</h1>
+
+<div class="container">
+  {% if expenses.count %}
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Amount {Currency}</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for expense in expenses %}
+      <tr>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.category}}</td>
+        <td>{{expense.description}}</td>
+        <td>{{expense.date}}</td>
+        <td>
+          <a
+            href="{% url 'edit-expense' expense.id %}"
+            class="btn btn-secondary btn-sm"
+            >Edit</a
+          >
+          <a
+            href="{% url 'delete-expense' expense.id %}"
+            class="btn btn-danger btn-sm"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
 {% endblock content %}
