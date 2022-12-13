@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Category,Expenses
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Create your views here.
 # The @login prevents the user to go back to the home page after 
@@ -10,8 +11,13 @@ from django.contrib import messages
 def expenses(request):
     categories = Category.objects.all()
     expenses = Expenses.objects.filter(owner=request.user)
+
+    paginator = Paginator(expenses,1)
+    page_number = request.GET.get('page')
+    page_obj = Paginator.get_page(paginator,page_number)
     context = {
         'expenses':expenses,
+        'page_obj':page_obj
     }
 
     return render(request,'expenses/index.html',context)
