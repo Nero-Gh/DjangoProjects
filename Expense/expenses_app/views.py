@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Category,Expenses
 from django.contrib import messages
 from django.core.paginator import Paginator
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 # The @login prevents the user to go back to the home page after 
@@ -103,6 +105,20 @@ def delete_expense(request,id):
     expenses.delete()
     messages.warning(request,'Expense deleted successfully.')
     return redirect('expenses')
+
+
+
+def search_expense(request):
+    if request.method=='POST':
+        search_str = json.loads(request.body).get('searchText')
+
+
+        expenses = Expenses.objects.filter(amount__istartswith=search_str,owner=request.user) | Expenses.objects.filter(date__istartswith=search_str,owner=request.user) | Expenses.objects.filter(description__istartswith=search_str,owner=request.user) | Expenses.objects.filter(category__istartswith=search_str,owner=request.user)
+
+
+        data = expenses.values()
+
+        return JsonResponse(list(data), safe=False)
 
 
 
