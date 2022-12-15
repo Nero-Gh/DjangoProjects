@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %}
+<!----->
+{% load static %}
 
 <!-------->
 {% block content %}
@@ -43,40 +45,42 @@
     </div>
   </div>
 
-  <table class="table table-stripped table-hover">
-    <thead>
-      <tr>
-        <th>Amount {Currency}</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+  <div class="app-table">
+    <table class="table table-stripped table-hover">
+      <thead>
+        <tr>
+          <th>Amount {Currency}</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      {% for expense in page_obj %}
-      <tr>
-        <td>{{expense.amount}}</td>
-        <td>{{expense.category}}</td>
-        <td>{{expense.description}}</td>
-        <td>{{expense.date}}</td>
-        <td>
-          <a
-            href="{% url 'edit-expense' expense.id %}"
-            class="btn btn-secondary btn-sm"
-            >Edit</a
-          >
-          <a
-            href="{% url 'delete-expense' expense.id %}"
-            class="btn btn-danger btn-sm"
-            >Delete</a
-          >
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      <tbody>
+        {% for expense in page_obj %}
+        <tr>
+          <td>{{expense.amount}}</td>
+          <td>{{expense.category}}</td>
+          <td>{{expense.description}}</td>
+          <td>{{expense.date}}</td>
+          <td>
+            <a
+              href="{% url 'edit-expense' expense.id %}"
+              class="btn btn-secondary btn-sm"
+              >Edit</a
+            >
+            <a
+              href="{% url 'delete-expense' expense.id %}"
+              class="btn btn-danger btn-sm"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
   <div class="">
     Showing page {{page_obj.number}} of {{page_obj.paginator.num_pages}}

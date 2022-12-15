@@ -6,6 +6,9 @@ const passwordField = document.querySelector("#passwordField");
 const checkSuccess = document.querySelector(".check-success");
 const passwordShowToggle = document.querySelector(".show-password");
 const submitButton = document.querySelector(".submit-Button");
+const tbody = document.querySelector(".table-output");
+
+tbody.style.display = none;
 
 passwordShowToggle.style.cursor = "pointer";
 // Password hide and show function
