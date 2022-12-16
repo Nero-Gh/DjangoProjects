@@ -81,12 +81,29 @@
       </tbody>
     </table>
   </div>
+  <div class="table-output">
+    <table class="table table-stripped table-hover">
+      <thead>
+        <tr>
+          <th>Amount {Currency}</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-  <div class="">
+      <tbody class="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="pagination-container">
     Showing page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
   </div>
 
-  <ul class="pagination pagination-sm align-right float-right mr-auto">
+  <ul
+    class="pagination pagination-container pagination-sm align-right float-right mr-auto"
+  >
     {%if page_obj.has_previous %}
     <li class="page-item active" aria-current="page">
       <a class="page-link" href="?page={{page_obj.previous_page_number}}"
@@ -110,5 +127,6 @@
   {% endif %}
 </div>
 
-<script src="{% static 'js/search_expense.js' %}"></script>
+<script src="{% static 'js/searchExpense.js' %}"></script>
+
 {% endblock content %}

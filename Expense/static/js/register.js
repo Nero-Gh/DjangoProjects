@@ -40,14 +40,12 @@ usernameField.addEventListener("keyup", (e) => {
     checkSuccess.style.display = "none";
   }
   if (usernameVal.length > 0) {
-    console.log("111", 111);
     fetch("/authentication/validate-username", {
       body: JSON.stringify({ username: usernameVal }),
       method: "POST",
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
         checkSuccess.style.display = "none";
 
         if (data.username_error) {
@@ -75,15 +73,12 @@ emailField.addEventListener("keyup", (e) => {
   }
 
   if (emailVal.length > 0) {
-    console.log("111", 111);
     fetch("/authentication/validate-email", {
       body: JSON.stringify({ email: emailVal }),
       method: "POST",
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
-
         if (data.email_error) {
           submitButton.disabled = true;
           emailField.classList.add("is-invalid");
