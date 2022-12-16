@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 import json
 from django.http import JsonResponse
+from userpreferences.models import UserPreference
 
 # Create your views here.
 # The @login prevents the user to go back to the home page after 
@@ -14,21 +15,24 @@ def expenses(request):
     categories = Category.objects.all()
     expenses = Expenses.objects.filter(owner=request.user)
 
-    paginator = Paginator(expenses,1)
+    paginator = Paginator(expenses,10)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator,page_number)
+    currency = UserPreference.objects.get(user = request.user).currence
     context = {
         'expenses':expenses,
-        'page_obj':page_obj
+        'page_obj':page_obj,
+        'currency':currency,
     }
 
     return render(request,'expenses/index.html',context)
 
 def add_expense(request):
     categories = Category.objects.all()
+    mydate = request.POST
     context =  {
         'categories':categories,
-        'values':request.POST
+        'value':mydate,
     }
     if request.method=='GET':
         return render(request,'expenses/add_expense.html',context)

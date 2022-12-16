@@ -32,15 +32,20 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <input
-        class="form-control form-control-dark w-100 rounded-0 border-0"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
+
       <div class="navbar-nav">
-        <div class="nav-item text-nowrap">
-          <form action="{% url 'logout' %}" method="post">
+        <div
+          class="nav-item text-nowrap"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <a class="nav-link text-uppercase mr-5">
+            {{request.user.username}}
+          </a>
+          <form action="{% url 'logout' %}" method="post" class="ml-2">
             {%csrf_token%}
             <input
               type="submit"
