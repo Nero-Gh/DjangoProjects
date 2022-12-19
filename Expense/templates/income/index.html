@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+<!----->
+{% load static %}
+
+<!-------->
+{% block content %}
+<!------>
+
+<div class="container">
+  <h1 class="mt-5">Homepage</h1>
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="">Income</a></li>
+          <li class="breadcrumb-item active" aria-current="page">My Income</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      <a href="{% url 'add-income' %}" class="btn btn-primary btn-sm">
+        Add Income</a
+      >
+    </div>
+  </div>
+</div>
+{% include 'partials/_messages.html' %}
+
+<div class="container">
+  {% if income.count %}
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Search"
+          id="searchText"
+        />
+      </div>
+    </div>
+  </div>
+  <!----- 
+  <div class="app-table">
+    <table class="table table-stripped table-hover">
+      <thead>
+        <tr>
+          <th>Amount {{Currency}}</th>
+          <th>Source</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for expense in page_obj %}
+        <tr>
+          <td>{{expense.amount}}</td>
+          <td>{{expense.category}}</td>
+          <td>{{expense.description}}</td>
+          <td>{{expense.date}}</td>
+          <td>
+            <a
+              href="{% url 'edit-expense' expense.id %}"
+              class="btn btn-secondary btn-sm"
+              >Edit</a
+            >
+            <a
+              href="{% url 'delete-expense' expense.id %}"
+              class="btn btn-danger btn-sm"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div> -->
+
+  {% comment %}
+  <div class="table-output">
+    <table class="table table-stripped table-hover">
+      <thead>
+        <tr>
+          <th>Amount {{Currency}}</th>
+          <th>Source</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody class="tbody"></tbody>
+    </table>
+  </div>
+  {% endcomment %} {% comment %}
+  <div class="pagination-container">
+    Showing page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+  </div>
+  {% endcomment %} {% comment %}
+  <ul
+    class="pagination pagination-container pagination-sm align-right float-right mr-auto"
+  >
+    {%if page_obj.has_previous %}
+    <li class="page-item active" aria-current="page">
+      <a class="page-link" href="?page={{page_obj.previous_page_number}}"
+        >Previous</a
+      >
+    </li>
+    {%endif%}
+
+    <!------>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{page_obj.paginator.num_pages}}"
+        >{{page_obj.paginator.num_pages}}</a
+      >
+    </li>
+    {% endif %}
+  </ul>
+  {% endif %} {% endcomment %}
+</div>
+
+<script src="{% static 'js/searchIncome.js' %}"></script>
+
+{% endblock content %}
