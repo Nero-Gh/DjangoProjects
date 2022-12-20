@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  <!----- 
+
   <div class="app-table">
     <table class="table table-stripped table-hover">
       <thead>
@@ -56,20 +56,20 @@
       </thead>
 
       <tbody>
-        {% for expense in page_obj %}
+        {% for income in page_obj %}
         <tr>
-          <td>{{expense.amount}}</td>
-          <td>{{expense.category}}</td>
-          <td>{{expense.description}}</td>
-          <td>{{expense.date}}</td>
+          <td>{{income.amount}}</td>
+          <td>{{income.source}}</td>
+          <td>{{income.description}}</td>
+          <td>{{income.date}}</td>
           <td>
             <a
-              href="{% url 'edit-expense' expense.id %}"
+              href="{% url 'edit-income' income.id %}"
               class="btn btn-secondary btn-sm"
               >Edit</a
             >
             <a
-              href="{% url 'delete-expense' expense.id %}"
+              href="{% url 'delete-income' income.id %}"
               class="btn btn-danger btn-sm"
               >Delete</a
             >
@@ -78,9 +78,9 @@
         {% endfor %}
       </tbody>
     </table>
-  </div> -->
+  </div>
 
-  {% comment %}
+  <!--
   <div class="table-output">
     <table class="table table-stripped table-hover">
       <thead>
@@ -96,11 +96,11 @@
       <tbody class="tbody"></tbody>
     </table>
   </div>
-  {% endcomment %} {% comment %}
+
   <div class="pagination-container">
     Showing page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
   </div>
-  {% endcomment %} {% comment %}
+
   <ul
     class="pagination pagination-container pagination-sm align-right float-right mr-auto"
   >
@@ -112,7 +112,7 @@
     </li>
     {%endif%}
 
-    <!------>
+   
     {% if page_obj.has_next %}
     <li class="page-item">
       <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
@@ -124,7 +124,7 @@
     </li>
     {% endif %}
   </ul>
-  {% endif %} {% endcomment %}
+  {% endif %} -->
 </div>
 
 <script src="{% static 'js/searchIncome.js' %}"></script>

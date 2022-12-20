@@ -18,7 +18,8 @@ def expenses(request):
     paginator = Paginator(expenses,10)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator,page_number)
-    currency = UserPreference.objects.get(user = request.user).currence
+    # currency = UserPreference.objects.filter(user = request.user).currence
+    currency = ''
     context = {
         'expenses':expenses,
         'page_obj':page_obj,
@@ -27,6 +28,7 @@ def expenses(request):
 
     return render(request,'expenses/index.html',context)
 
+@login_required(login_url='authentication/login')
 def add_expense(request):
     categories = Category.objects.all()
     mydate = request.POST
@@ -60,7 +62,7 @@ def add_expense(request):
     return redirect('expenses')
     
 
-
+@login_required(login_url='authentication/login')
 def edit_expense(request,id):
     expenses= Expenses.objects.get(pk=id)
     categories = Category.objects.all()
@@ -103,7 +105,7 @@ def edit_expense(request,id):
             return redirect('expenses')
 
 
-
+@login_required(login_url='authentication/login')
 def delete_expense(request,id):
     expenses = Expenses.objects.get(pk=id)
     expenses.delete()
@@ -111,7 +113,7 @@ def delete_expense(request,id):
     return redirect('expenses')
 
 
-
+@login_required(login_url='authentication/login')
 def search_expense(request):
     if request.method=='POST':
         search_str = json.loads(request.body).get('searchText')
