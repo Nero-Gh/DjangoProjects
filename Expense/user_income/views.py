@@ -109,3 +109,16 @@ def delete_income(request,id):
     user_income.delete()
     messages.warning(request,'Income deleted successfully.')
     return redirect('income')
+
+
+
+@login_required(login_url='authentication/login')
+def search_income(request):
+    if request.method=='POST':
+        search_str = json.loads(request.body).get('searchText')
+
+        user_income = UserIncome.objects.filter(amount__istartswith=search_str,owner=request.user) | UserIncome.objects.filter(date__istartswith=search_str,owner=request.user) | UserIncome.objects.filter(description__istartswith=search_str,owner=request.user) | UserIncome.objects.filter(category__istartswith=search_str,owner=request.user)
+
+        data = user_income.values()
+
+        return JsonResponse(list(data), safe=False)

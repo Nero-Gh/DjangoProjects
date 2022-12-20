@@ -80,7 +80,6 @@
     </table>
   </div>
 
-  <!--
   <div class="table-output">
     <table class="table table-stripped table-hover">
       <thead>
@@ -111,8 +110,8 @@
       >
     </li>
     {%endif%}
+    <!------>
 
-   
     {% if page_obj.has_next %}
     <li class="page-item">
       <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
@@ -124,9 +123,9 @@
     </li>
     {% endif %}
   </ul>
-  {% endif %} -->
+  {% endif %}
 </div>
 
 <script src="{% static 'js/searchIncome.js' %}"></script>
 
-{% endblock content %}
+{% endblock%}
