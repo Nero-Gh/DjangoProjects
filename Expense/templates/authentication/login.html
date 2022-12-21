@@ -36,6 +36,17 @@
             class="btn btn-primary form-control submit-button"
           />
         </form>
+        <div class="flex space-between">
+          <div>
+            <span>Don't have account? </span
+            ><a href="{% url 'register' %}">Register</a>
+          </div>
+
+          <div>
+            <span>Forgot password? </span
+            ><a href="{% url 'reset-password' %}">Reset</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
